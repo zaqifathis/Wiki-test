@@ -1,1 +1,43 @@
-site_name: My Docs
+site_name: BIMserver Wiki WIP
+
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: true
+  - tables
+
+theme:
+  name: material
+  logo: assets/BIMserver_logo.png
+  favicon: assets/BIMserver_logo.png
+  language: en
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+    - search.suggest
+    - search.highlight
+    - search.share
+    - navigation.footer
+
+  palette:
+    # Light mode palette
+    - scheme: default
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-5
+        name: Switch to dark mode
+
+    # Dark mode palette
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-3
+        name: Switch to light mode
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/opensourceBIM/BIMserver
