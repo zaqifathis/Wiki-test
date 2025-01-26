@@ -1,11 +1,12 @@
-Protocol Buffers is one of the three available channels to access the methods of the [Service Interfaces](Service-Interfaces).
+Protocol Buffers is one of the three available channels to access the methods of the [Service Interfaces](Service-Interfaces.md).
 
 # Introduction
 
 As the BIMserver's main function is to allow other software to store and retrieve information about building information models, it is very important to support a wide variety of programming languages. From the beginning of the BIMserver project a SOAP interface has been available, but SOAP has a few disadvantages:
-* SOAP is XML based, which makes it slower/larger
-* Almost every SOAP stack interprets the standards a little different
-* A lot of diversions/extensions are available, excluding certain soap clients
+
+- SOAP is XML based, which makes it slower/larger
+- Almost every SOAP stack interprets the standards a little different
+- A lot of diversions/extensions are available, excluding certain soap clients
 
 For these reasons another interface has been implemented: [Protocol Buffers](https://github.com/protocolbuffers/protobuf).
 
@@ -19,17 +20,17 @@ The .proto file can be downloaded from a running BIMserver. Go to the "Info" pag
 
 The "service interface" methods are not available in the Protocol Buffers API as-is because PB does have some limitations.
 
-All service calls in Protocol Buffers allow only 1 parameter and 1 return type, for this reason the BIMserver generates specific "Request" and "Response" messages for every call. For example the ``login`` method uses the ``LoginRequest`` message as input parameter, and the ``LoginResponse`` message as the return type.
+All service calls in Protocol Buffers allow only 1 parameter and 1 return type, for this reason the BIMserver generates specific "Request" and "Response" messages for every call. For example the `login` method uses the `LoginRequest` message as input parameter, and the `LoginResponse` message as the return type.
 
 # Request Messages
 
-All request messages contain the same amount of fields as there are parameters in the service call. So for the login method, the ``LoginRequest`` message contains 2 fields: ``username`` and ``password``, both of type ``string``.
+All request messages contain the same amount of fields as there are parameters in the service call. So for the login method, the `LoginRequest` message contains 2 fields: `username` and `password`, both of type `string`.
 
 # Response Messages
 
-All response messages contain 2 fields. The first field is the ``errorMessage`` field of type ``string``. This field always contains ``"OKE"`` if the call succeeded, or something else describing the error if the call did not succeed. The reason for this construction is the fact that Protocol Buffers does not support Exceptions, but the "service interface" does throw them. The BIMserver converts the exceptions thrown to errorMessage values.
+All response messages contain 2 fields. The first field is the `errorMessage` field of type `string`. This field always contains `"OKE"` if the call succeeded, or something else describing the error if the call did not succeed. The reason for this construction is the fact that Protocol Buffers does not support Exceptions, but the "service interface" does throw them. The BIMserver converts the exceptions thrown to errorMessage values.
 
-The second field is the actual return value. This is always the same value as in the ServiceInterface, or unset if an error occured. The special ``Void`` type is used for return-type-less methods.
+The second field is the actual return value. This is always the same value as in the ServiceInterface, or unset if an error occured. The special `Void` type is used for return-type-less methods.
 
 # RPC
 

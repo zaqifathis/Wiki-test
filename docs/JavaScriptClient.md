@@ -37,22 +37,27 @@ The JavaScript API will communicate via JSON for most of the functions. Only dow
 
 # Using the API
 
-All methods in the [Service Interfaces](Service-Interfaces) can be called (make sure you look at the right documentation for your version). You must always use all parameters that are defined. Also when sending complex objects, you should define all the properties of the objects. The first call you will usually do is to login.
+All methods in the [Service Interfaces](Service-Interfaces.md) can be called (make sure you look at the right documentation for your version). You must always use all parameters that are defined. Also when sending complex objects, you should define all the properties of the objects. The first call you will usually do is to login.
 
 ```javascript
-	bimServerApi.login(username, password, rememberme, function(data){
-		// Success
-	});
+bimServerApi.login(username, password, rememberme, function (data) {
+  // Success
+});
 ```
 
 Not all calls have been implemented in the JavaScript API, but it is very easy to use them anyways. The following example will list all the available projects:
 
 ```javascript
-	bimServerApi.call("Bimsie1ServiceInterface", "getAllProjects", {onlyTopLevel: true, onlyActive: true}, function(data){
-		data.forEach(function(project){
-			console.log(project);
-		});
-	});
+bimServerApi.call(
+  "Bimsie1ServiceInterface",
+  "getAllProjects",
+  { onlyTopLevel: true, onlyActive: true },
+  function (data) {
+    data.forEach(function (project) {
+      console.log(project);
+    });
+  }
+);
 ```
 
 > TODO: Document the use of the Model class

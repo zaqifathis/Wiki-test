@@ -1,4 +1,4 @@
-> This was the design document, the actual implementation is documented [here](JSON-Queries)
+> This was the design document, the actual implementation is documented [here](JSON-Queries.md)
 
 BIMserver has had several ways of querying the stored models, but none have been very useful so far. This page will describe the requirements of a new query language that should replace all the other ways of querying data.
 
@@ -19,6 +19,7 @@ Requirements
 - Should at least be possible to have an idea of spatial queries
 
 ## Possible standards/influences
+
 - http://www.jsoniq.org/
 - XQuery
 - OQL
@@ -27,6 +28,7 @@ Requirements
 ## GraphQL
 
 Looks pretty cool. Main reasons for not choosing it:
+
 - The actual query part seems to be quite limited, for example no range queries (>, <). We could implement "oid" and "guid" root calls server side. Maybe even as lists, and combined with type as well...
 - Not only a new language, but also a new syntax, but there is a Java implementation of the parsing already (https://github.com/andimarek/graphql-java)
 
@@ -46,85 +48,83 @@ This example script is used in BIMvie.ws to preload the minimal amount of object
 
 ```javascript
 var preLoadQuery = {
-	defines: {
-		Representation: {
-			field: "Representation"
-		},
-		ContainsElementsDefine: {
-			field: "ContainsElements",
-			include: {
-				field: "RelatedElements",
-				include: [
-					"IsDecomposedByDefine",
-					"ContainsElementsDefine",
-					"Representation"
-				]
-			}
-		},
-		IsDecomposedByDefine: {
-			field: "IsDecomposedBy",
-			include: {
-				field: "RelatedObjects",
-				include: [
-					"IsDecomposedByDefine",
-					"ContainsElementsDefine",
-					"Representation"
-				]
-			}
-		}
-	},
-	queries: [
-	    {
-			type: "IfcProject",
-			include: [
-				"IsDecomposedByDefine",
-				"ContainsElementsDefine"
-			]
-	    },
-	    {
-	    	type: "IfcRepresentation",
-	    	includeAllSubtypes: true
-	    },
-	    {
-	    	type: "IfcProductRepresentation"
-	    },
-	    {
-	    	type: "IfcPresentationLayerWithStyle"
-	    },
-	    {
-	    	type: "IfcProduct",
-	    	includeAllSubTypes: true
-	    },
-	    {
-	    	type: "IfcProductDefinitionShape"
-	    },
-	    {
-	    	type: "IfcPresentationLayerAssignment"
-	    },
-	    {
-	    	type: "IfcRelAssociatesClassification",
-	    	include: [
-	    		{
-	    			field: "RelatedObjects"
-	    		},
-	    		{
-	    			field: "RelatingClassification"
-	    		}
-	    	]
-	    },
-	    {
-	    	type: "IfcSIUnit"
-	    },
-	    {
-	    	type: "IfcPresentationLayerAssignment"
-	    }
-	]
+  defines: {
+    Representation: {
+      field: "Representation",
+    },
+    ContainsElementsDefine: {
+      field: "ContainsElements",
+      include: {
+        field: "RelatedElements",
+        include: [
+          "IsDecomposedByDefine",
+          "ContainsElementsDefine",
+          "Representation",
+        ],
+      },
+    },
+    IsDecomposedByDefine: {
+      field: "IsDecomposedBy",
+      include: {
+        field: "RelatedObjects",
+        include: [
+          "IsDecomposedByDefine",
+          "ContainsElementsDefine",
+          "Representation",
+        ],
+      },
+    },
+  },
+  queries: [
+    {
+      type: "IfcProject",
+      include: ["IsDecomposedByDefine", "ContainsElementsDefine"],
+    },
+    {
+      type: "IfcRepresentation",
+      includeAllSubtypes: true,
+    },
+    {
+      type: "IfcProductRepresentation",
+    },
+    {
+      type: "IfcPresentationLayerWithStyle",
+    },
+    {
+      type: "IfcProduct",
+      includeAllSubTypes: true,
+    },
+    {
+      type: "IfcProductDefinitionShape",
+    },
+    {
+      type: "IfcPresentationLayerAssignment",
+    },
+    {
+      type: "IfcRelAssociatesClassification",
+      include: [
+        {
+          field: "RelatedObjects",
+        },
+        {
+          field: "RelatingClassification",
+        },
+      ],
+    },
+    {
+      type: "IfcSIUnit",
+    },
+    {
+      type: "IfcPresentationLayerAssignment",
+    },
+  ],
 };
 ```
 
 ## JSON Based Query Language
 
 Query on type
+
 ```
 {
   type: "IfcProject"
@@ -132,6 +132,7 @@ Query on type
 ```
 
 Query on oid
+
 ```
 {
   oid: 12345
@@ -139,6 +140,7 @@ Query on oid
 ```
 
 Query on oids (OR)
+
 ```
 {
   oids: [12346, 56789]
@@ -146,6 +148,7 @@ Query on oids (OR)
 ```
 
 Query on GUID
+
 ```
 {
   guid: "EBEBEBEBE"
@@ -153,6 +156,7 @@ Query on GUID
 ```
 
 Query on GUID's (OR)
+
 ```
 {
   guids: ["EBEBEBEBEB", "CDCDCDCDCD"]
@@ -160,6 +164,7 @@ Query on GUID's (OR)
 ```
 
 Using AND, OR, XOR
+
 ```
 {
   or: [{
@@ -191,6 +196,7 @@ The complicating factor for the IFC models is that those are versioned.
 ## When to index
 
 There are a few strategies
+
 - Simply index everything (all types), this will slow down the write operations a lot, and also increase the database size.
 - Add explicit indices to commonly queried fields in the code. Problem: how to determine the commonly queried fields. We could ask people to (automatically) share their query-patterns.
 - Add dynamic indices based on usage pattern of a specific instance of BIMserver. This is the most complicated, although a very basic implementation (for example, just index every field that has ever been explicitly queried) should be possible.

@@ -1,10 +1,11 @@
-To connect to a BIMserver you can use one of the 3 protocols: [SOAP](SOAP), [JSON](JSON-API) or [Protocol Buffers](Protocol-Buffers). To make connecting to a BIMserver even easier, there also is a Java library you can use.
+To connect to a BIMserver you can use one of the 3 protocols: [SOAP](SOAP.md), [JSON](JSON-API.md) or [Protocol Buffers](Protocol-Buffers.md). To make connecting to a BIMserver even easier, there also is a Java library you can use.
 
 # Get the client library
 
 From version 1.5 on we are using Maven for all dependency management. We suggest you do too when using the BIMserver Client library as it makes installing all the required dependencies a lot easier.
 
-You can find the Maven XML snippet in the latest release notes, [BIMserver 1.5.185](https://github.com/opensourceBIM/BIMserver/releases/tag/v1.5.185). Make sure you match the version of the client with the version of your BIMserver. It  looks something like this:
+You can find the Maven XML snippet in the latest release notes, [BIMserver 1.5.185](https://github.com/opensourceBIM/BIMserver/releases/tag/v1.5.185). Make sure you match the version of the client with the version of your BIMserver. It looks something like this:
+
 ```xml
 <dependency>
     <groupId>org.opensourcebim</groupId>
@@ -13,7 +14,7 @@ You can find the Maven XML snippet in the latest release notes, [BIMserver 1.5.1
 </dependency>
 ```
 
-If you are using Eclipse for development, and you are not familiar with Maven yet, use [this tutorial](BimServerClientMavenEclipse).
+If you are using Eclipse for development, and you are not familiar with Maven yet, use [this tutorial](BimServerClientMavenEclipse.md).
 
 Of course you can also use the client from source code, in that case download a source zip file, or checkout the projects from GIT.
 
@@ -38,7 +39,7 @@ public class ClientDemo {
 		try {
 			JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
+
 			SProject newProject = client.getServiceInterface().addProject("Test Project", "ifc2x3tc1");
 			System.out.println(newProject.getOid());
 		} catch (BimServerClientException e) {
@@ -54,9 +55,9 @@ public class ClientDemo {
 
 BIMserver 1.5 examples:
 
-* Connect to a BIMserver: [org.opensourcebim.clientdemo.Connecting](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/Connecting.java)
-* Create a project: [org.opensourcebim.clientdemo.CreateProject](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/CreateProject.java)
-* Checkin IFC file: [org.opensourcebim.clientdemo.CheckinIfcFile](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/CheckinIfcFile.java)
+- Connect to a BIMserver: [org.opensourcebim.clientdemo.Connecting](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/Connecting.java)
+- Create a project: [org.opensourcebim.clientdemo.CreateProject](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/CreateProject.java)
+- Checkin IFC file: [org.opensourcebim.clientdemo.CheckinIfcFile](https://github.com/opensourceBIM/BimServerJavaClientDemo/blob/master/BimServerJavaClientDemo/src/org/opensourcebim/clientdemo/CheckinIfcFile.java)
 
 # Older examples (might not work anymore in 1.5)
 

@@ -1,10 +1,11 @@
 > The new query language is still in development, so expect this to change.
 
-You can read the original motivations to write this language [here](New-query-langage)
+You can read the original motivations to write this language [here](New-query-langage.md)
 
 # Intro
 
 Some characteristics to of this language to keep in mind:
+
 - The data model of the "queried" is the same data model as the "query results". In most cases it will be Ifc2x3tc1 or Ifc4.
 - The previous also explains why there are no aggregates (such as `COUNT`, `AVG`, `MAX`, etc. in SQL), because there is no place to store those.
 - A query result is always a subset of the original model.
@@ -15,20 +16,20 @@ Some characteristics to of this language to keep in mind:
 
 All queries must be valid JSON. This means that all keys must be quoted, all strings must be quoted. When sending a query to BIMserver using the [ServiceInterface.download](https://github.com/opensourceBIM/BIMserver/blob/0c7e37092045d08a4ae8ca836026823f02a977b2/PluginBase/src/org/bimserver/shared/interfaces/ServiceInterface.java#L102-L116) method through JSON, ensure that your query is base64 encoded.
 
-For further information regarding downloading the data via queries, please check [Downloading models](Downloading-models)
+For further information regarding downloading the data via queries, please check [Downloading models](Downloading-models.md)
 
 # Base query
 
 This query will query all objects.
 
 ```json
-{
-}
+{}
 ```
 
 # Type query
 
 This query will get all IfcWall objects
+
 ```json
 {
   "type": "IfcWall"
@@ -45,6 +46,7 @@ When your model for example only contains IfcWallStandardCase objects, this quer
 ```
 
 You can also query multiple types, the next example would give you all IfcDoor and IfcWindow objects
+
 ```json
 {
   "types": ["IfcDoor", "IfcWindow"]
@@ -54,6 +56,7 @@ You can also query multiple types, the next example would give you all IfcDoor a
 # GUID query
 
 When you already know the GUID(s) of (an) object(s), you can query those directly:
+
 ```json
 {
   "guids": ["GUID1", "GUID2"]
@@ -63,6 +66,7 @@ When you already know the GUID(s) of (an) object(s), you can query those directl
 # OID query
 
 The same as for GUIDs, you can also query by OID (ObjectID)
+
 ```json
 {
   "oids": [1523, 2130, 898]
@@ -90,6 +94,7 @@ Every IFC object has a fixed set of fields. For example the IfcWindow has the fi
 In a lot of cases, the results of the query will be serialized as IFC. The previous examples would however not result in valid IFC files. For an IFC file to be valid, it not only has to solely contain objects that conform to the IFC schema, also certain references should always be included. For example every object must have an IfcOwnerHistory. Also there must always be an 1 IfcProject object.
 
 Example of the body of an IFC file for the IfcWall query:
+
 ```
 #1= IFCWALLSTANDARDCASE('1hmUg1hfv4UPf0UtHFe7ta',$,'SW - 009',$,$,$,$,'6BC1EA81-AE9E-4479-9A-40-7B744FA07DE4');
 #2= IFCWALLSTANDARDCASE('05UYVl82vAa8mFc3FMTYL7',$,'SW - 010',$,$,$,$,'057A27EF-202E-4A90-8C-0F-9833D6762547');
@@ -104,6 +109,7 @@ To make creating valid IFC files with queries easier, a few predefined includes 
 For every IFC schema, there is a respective "standard library" holding these predefined includes, for example `ifc2x3-stdlib` and `ifc4-stdlib`.
 
 To make the IfcWall example work in IFC4, this would be the new query:
+
 ```json
 {
   "type": "IfcWall",
@@ -120,9 +126,11 @@ To make the IfcWall example work in IFC4, this would be the new query:
 Each include has a different function.
 
 ## ifc4-stdlib:ContainedInStructure
+
 ifc4-stdlib:ContainedInStructure will make sure all the spatial containment references "up" will be followed.
 
 Example project structure
+
 ```
 IfcProject
   IfcSite
@@ -137,7 +145,6 @@ For each IfcWall encountered, the tree will be "walked" all the way up. This aut
 ## ifc4-stdlib:OwnerHistory
 
 For every IfcWall, the OwnerHistory will be included
-
 
 ## ifc4-stdlib:Representation
 

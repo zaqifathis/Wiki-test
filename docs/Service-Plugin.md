@@ -1,6 +1,6 @@
 Service plugins can extend the functionality of a BIMserver by listening to notifications and acting upon them. For example a ClashDetection Service plugin could create a ClashDetection report as [ExtendedData] when a user checks in a new revision.
 
-Have a look [here](Writing-a-service,-the-easy-way) for an easier implementation of services.
+Have a look [here](Writing-a-service,-the-easy-way.md) for an easier implementation of services.
 
 # Details
 
@@ -16,7 +16,7 @@ It's best to register your services in the init method. You have to provide a [S
 ```java
 ServerDescriptor serverDescriptor = StoreFactory.eINSTANCE.createServerDescriptor();
 serverDescriptor.setTitle("Clashdetection");
-		
+
 ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 clashDetection.setName("Clashdetection");
 clashDetection.setDescription("Clashdetection");
@@ -39,6 +39,7 @@ register(serverDescriptor, clashDetection, new NotificationInterfaceAdapter(){
 ```
 
 Example:
+
 ```java
 public class DemoServicePlugin1 extends ServicePlugin {
 
@@ -49,7 +50,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 		super.init(pluginManager);
 		initialized = true;
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return "Demo Service 1";
@@ -115,7 +116,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					state.setStart(startDate);
 					state.setEnd(new Date());
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
-					
+
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
 				} catch (PublicInterfaceNotFoundException e1) {
 					e1.printStackTrace();

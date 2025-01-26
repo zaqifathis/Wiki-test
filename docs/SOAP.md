@@ -1,4 +1,4 @@
-SOAP is one of the three available channels to access the methods of the [Service Interfaces](Service-Interfaces).
+SOAP is one of the three available channels to access the methods of the [Service Interfaces](Service-Interfaces.md).
 
 This document describes how to use the SOAP interface of BIMserver 1.2
 
@@ -74,6 +74,7 @@ After you call login/autlogin, you will receive a token, this token must be incl
 ```
 
 To enable this kind of functionality in Apache CXF (Java)
+
 ```java
 	Token token = serviceInterface.getCurrentToken();
 	List<Header> headers = new ArrayList<Header>();
@@ -85,4 +86,5 @@ To enable this kind of functionality in Apache CXF (Java)
 The [BimServerClientLib BimServerClientLib] has an option to switch between both ways. When connection with the method connectSoap, the second argument indicates weather to use the first (false) or second (true) method.
 
 # GeneratedClient
+
 From version 1.1, there is a "GeneratedSoapClient" project in SVN. This project contains generated source code based on Apache CXF and the latest BIMserver "ServiceInterface". It's just a convenience project.

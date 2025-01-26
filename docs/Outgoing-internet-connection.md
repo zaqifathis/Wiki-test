@@ -1,11 +1,13 @@
 BIMserver (> 1.5) needs a working outgoing internet connection for the following purposes.
 
-> Note: If you don't have a working outgoing internet connection, have a look [here](Installing-without-internet-connection)
+> Note: If you don't have a working outgoing internet connection, have a look [here](Installing-without-internet-connection.md)
 
 # Updating/installing plugins
+
 Address: http://central.maven.org/maven2
 
 # Sending triggers to other servers (optional)
+
 It will need HTTP connectivity to the servers you select
 
 # Extended Data Schemas (optional)

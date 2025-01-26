@@ -6,13 +6,14 @@ Checkin is the term used to upload complete models to a BIMserver. Because there
 
 The usual way would be to call the [checkin method](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/ServiceInterface.java#L534-L553) on the ServiceInterface. Just look at the documentation for the method. It will return a topicId/checkinId, of which the use is explained [here](#TopicId).
 
-If you are using JSON, you'll have to encode the actual data (the ``data`` argument) in base64. Because of this, using this method is not the most efficient way of checking-in a file in BIMserver. It is however the most consistent way, because this call works just like all other (300) BIMserver calls.
+If you are using JSON, you'll have to encode the actual data (the `data` argument) in base64. Because of this, using this method is not the most efficient way of checking-in a file in BIMserver. It is however the most consistent way, because this call works just like all other (300) BIMserver calls.
 
 Any immediate exception will be in the return message as well, just as all other calls to BIMserver. See section about exceptions in the [JSON API](JSON-API#exception) for the JSON interface.
 
 # Other way
 
-Because of the overhead of the different implementations of the Service Interfaces (SOAP, PB, JSON) and because of the nature of the checkin method (pushing a lot of data, which makes streaming more suitable) there is another way. You can (HTTP) POST the data to ```/upload```. The required fields are:
+Because of the overhead of the different implementations of the Service Interfaces (SOAP, PB, JSON) and because of the nature of the checkin method (pushing a lot of data, which makes streaming more suitable) there is another way. You can (HTTP) POST the data to `/upload`. The required fields are:
+
 ```
 token: The token you are using, this is the token you get from calling login
 deserializerOid: Id of the deserializer you want to use
@@ -24,6 +25,7 @@ file: The actual data of the file you are uploading, make sure this is the last 
 ```
 
 The upload servlet will return a bit of json, the structure:
+
 ```
 {
   topicId: The topicId // Just like the one you get from calling ServiceInterface.checkin
@@ -31,6 +33,7 @@ The upload servlet will return a bit of json, the structure:
 ```
 
 If something goes wrong, it will return:
+
 ```
 {
   exception: A message
@@ -42,6 +45,7 @@ If something goes wrong, it will return:
 In the past, the TopicId was also called CheckinId - both denote the same concept.
 
 Get progress:
+
 ```
 Bimsie1NotificationRegistryInterface.getProgress
 {
@@ -50,6 +54,7 @@ topicId
 ```
 
 This will return:
+
 ```
 {
   state: "STARTED" | "DONE" | "NONE" | "AS_ERROR",
@@ -62,7 +67,9 @@ This will return:
 When something went wrong, e.g., the IFC file is supposedly invalid, the state will be "AS_ERROR". A description will be in the title field. The "stage" field contains a string describing the current stage of the process, which for example can be "Generating geometry...".
 
 # Using notification
+
 Register to be notified on a change in progress:
+
 ```
 Bimsie1NotificationRegistryInterface.registerProgressHandler
 {
@@ -71,9 +78,10 @@ endPointId: othis.server.endPointId
 }
 ```
 
-Read about [Endpoints](Endpoints) to learn how to acquire an endPointId.
+Read about [Endpoints](Endpoints.md) to learn how to acquire an endPointId.
 
-When there is new progress, the ``Bimsie1NotificationInterface.progress`` method will be called on the client.
+When there is new progress, the `Bimsie1NotificationInterface.progress` method will be called on the client.
+
 ```
 {
   topicId: "",
@@ -82,6 +90,7 @@ When there is new progress, the ``Bimsie1NotificationInterface.progress`` method
 ```
 
 Don't forget to unregister:
+
 ```
 Bimsie1NotificationRegistryInterface.unregisterProgressHandler
 {

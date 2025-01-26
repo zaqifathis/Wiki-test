@@ -1,20 +1,21 @@
+### Outdated Instruction
 
-### Outdated Instruction  
-You can find the instruction of Ubuntu installation for previous version: [version 1.3 and 1.4 installation](Install-on-Ubuntu)
+You can find the instruction of Ubuntu installation for previous version: [version 1.3 and 1.4 installation](Install-on-Ubuntu.md)
 
 ### Configure SSL
-If you would like to secure your BIMserver installation with HTTPS, follow the [SSL Setup Guide](SSL-setup) for detailed instructions on generating and configuring an SSL certificate.
 
-***
+If you would like to secure your BIMserver installation with HTTPS, follow the [SSL Setup Guide](SSL-setup.md) for detailed instructions on generating and configuring an SSL certificate.
 
-This guide explains how to install BIMserver on a Linux server with Ubuntu using Tomcat as application server. Root privileges are assumed. When running as a normal user, prepend ``sudo`` to commands that require elevated privilege. It has been tested in 11/2024 with BIMserver 1.5.185, Ubuntu 22.04.5 and Tomcat 9.0.95. Some sections contain a "Proxy note" in the end. Skip these if your server does not have to go through a proxy and jump to the next section. 
+---
 
-Basic Ubuntu configuration
-----------------------------------
+This guide explains how to install BIMserver on a Linux server with Ubuntu using Tomcat as application server. Root privileges are assumed. When running as a normal user, prepend `sudo` to commands that require elevated privilege. It has been tested in 11/2024 with BIMserver 1.5.185, Ubuntu 22.04.5 and Tomcat 9.0.95. Some sections contain a "Proxy note" in the end. Skip these if your server does not have to go through a proxy and jump to the next section.
+
+## Basic Ubuntu configuration
+
 First, configure and update the operating system if necessary.
 
 ```bash
-user@local:~$ apt-get update                             # update package list 
+user@local:~$ apt-get update                             # update package list
 user@local:~$ apt-get upgrade                            # update installed packages to latest version
 user@local:~$ apt-get install wget unzip default-jre     # install necessary packages
 ```
@@ -29,6 +30,7 @@ user@local:~$ logout               # logout and login again for the settings to 
 ```
 
 Additional content for /etc/profile:
+
 ```sh
 export http_proxy=http://[PROXY HOST]:[PORT]
 export https_proxy=https://[PROXY HOST]:[PORT]
@@ -38,8 +40,8 @@ export HTTPS_PROXY=$https_proxy
 export NO_PROXY=$no_proxy
 ```
 
-Directories and user setup
--------------------------------
+## Directories and user setup
+
 We will create home directories for BIMserver and Tomcat in the `/var` directory and assigned the ownership of those directories to the tomcat user and group created for that purpose.
 
 ```sh
@@ -60,9 +62,7 @@ tomcat:x:1009:1009::/var/tomcat:/sbin/nologin
 The home directory names and locations can be selected freely.
 If you want to have multiple BIMserver home later, you can create a new home directory in `/var/bimserver`.
 
-
-Install Tomcat
---------------------
+## Install Tomcat
 
 ```sh
 user@local:~$ wget [link of tomcat.zip]             # Download tomcat (Make sure you replace this with the latest release!)
@@ -87,10 +87,8 @@ user@local:~$ sudo -u tomcat /opt/tomcat9/bin/startup.sh   # start tomcat under 
 user@local:~$ sudo /opt/tomcat9/bin/shutdown.sh            # stop tomcat
 ```
 
+## Deploy and configure BIMserver
 
-
-Deploy and configure BIMserver
-----------------------
 Although Tomcat has hot deployment enabled by default, it may be more safe to stop Tomcat before any modifications of the setup and restart after.
 
 First download the BIMserver war and deploy it in Tomcat.
@@ -128,4 +126,3 @@ Additional content of `setenv.sh`:
 ```sh
 CATALINA_OPTS="-Dhttp.proxyHost=[PROXY HOST] -Dhttp.proxyPort=[PORT] -Dhttps.proxyHost=[PROXY HOST] -Dhttps.proxyPort=[PORT]"
 ```
-

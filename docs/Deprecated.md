@@ -4,11 +4,11 @@
 
 This has never really worked. Complete model is first loaded into memory, and then the query algorithms do their thing. BimQL seems to be dead and the JavaQueryEngine is too complicated for non-developers.
 
-Replacement: [New query language](New-query-langage)
+Replacement: [New query language](New-query-langage.md)
 
 ### Query AST
 
-This is very old code, not used a lot anymore. The few places where this is used, it can also be replaced by the more efficient [New query language](New-query-langage)
+This is very old code, not used a lot anymore. The few places where this is used, it can also be replaced by the more efficient [New query language](New-query-langage.md)
 
 ### XSLT serializer
 

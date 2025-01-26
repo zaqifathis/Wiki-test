@@ -4,10 +4,10 @@ To make it easier to create serializer plugins for the BIMserver, you can also d
 
 Note: Is is usually a lot easier to start from existing code, have a look at the "Cobie2Serializer" project for example.
 
-  * Follow the [Plugin Development](Plugin-Development) page
-  * Add a dependancy to the "XsltSerializer" project
-  * Create an xslt file in the plugin-project's root
-  * Change the "TestPlugin" file:
+- Follow the [Plugin Development](Plugin-Development.md) page
+- Add a dependancy to the "XsltSerializer" project
+- Create an xslt file in the plugin-project's root
+- Change the "TestPlugin" file:
 
 ```java
 	private boolean initialized;

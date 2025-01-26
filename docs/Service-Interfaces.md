@@ -4,15 +4,15 @@ In BIMserver 1.3/1.4 a lot of methods were moved to interfaces that are prefixed
 
 # The interfaces
 
-| Namespace | Name | Link |
-| --------- | ---- | --------------- |
-| org.bimserver | AdminInterface | [AdminInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/AdminInterface.java) |
-| org.bimserver | AuthInterface | [AuthInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/AuthInterface.java) |
-| org.bimserver | MetaInterface | [MetaInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/MetaInterface.java) |
-| org.bimserver | PluginInterface | [PluginInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/PluginInterface.java) |
-| org.bimserver | ServiceInterface | [ServiceInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/ServiceInterface.java) |
+| Namespace     | Name              | Link                                                                                                                                                   |
+| ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| org.bimserver | AdminInterface    | [AdminInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/AdminInterface.java)       |
+| org.bimserver | AuthInterface     | [AuthInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/AuthInterface.java)         |
+| org.bimserver | MetaInterface     | [MetaInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/MetaInterface.java)         |
+| org.bimserver | PluginInterface   | [PluginInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/PluginInterface.java)     |
+| org.bimserver | ServiceInterface  | [ServiceInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/ServiceInterface.java)   |
 | org.bimserver | SettingsInterface | [SettingsInterface.java](https://github.com/opensourceBIM/BIMserver/blob/master/PluginBase/src/org/bimserver/shared/interfaces/SettingsInterface.java) |
 
 # Access
 
-Access to these methods is provided through 3 different channels: [Protocol Buffers](Protocol-Buffers), [SOAP](SOAP) and [JSON](JSON-API).
+Access to these methods is provided through 3 different channels: [Protocol Buffers](Protocol-Buffers.md), [SOAP](SOAP.md) and [JSON](JSON-API.md).

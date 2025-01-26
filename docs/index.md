@@ -6,7 +6,7 @@ This wiki has grown over the years and contains older and newer information. Som
 
 ## Trying and testing
 
-If you just want to try and test the BIMserver, dive right into the wiki section "Get Started" and the [Quick Guide](Get-Started-Quick-Guide).
+If you just want to try and test the BIMserver, dive right into the wiki section "Get Started" and the [Quick Guide](Get-Started-Quick-Guide.md).
 
 ## Contributing
 
@@ -20,13 +20,13 @@ The Opensource BIMserver community has been actively developing since 2013. We a
 
 BIMserver has a flexible architecture and various interfaces and is meant to be integrated with your software to act as an IFC backend. You may:
 
-1. Write your own [plugin](Plugin-Development) or service.
+1. Write your own [plugin](Plugin-Development.md) or service.
 2. Use the clients or write your own client to have your application talk with a BIMserver instance.
 3. Embed the Opensource BIMserver in your application.
 
 ## Support
 
-If you need help, first check out this Wiki, the [FAQ](FAQ) list and the issue tracker. You can also contact the developers/contributors regarding the issue you encountered. You can reach the maintainers via [bimserver@opensourcebim.org](mailto:bimserver@opensourcebim.org).
+If you need help, first check out this Wiki, the [FAQ](FAQ.md) list and the issue tracker. You can also contact the developers/contributors regarding the issue you encountered. You can reach the maintainers via [bimserver@opensourcebim.org](mailto:bimserver@opensourcebim.org).
 
 ## Some notes:
 
@@ -34,4 +34,4 @@ If you need help, first check out this Wiki, the [FAQ](FAQ) list and the issue t
 
 ## License:
 
-Open Source BIMserver is licensed under the AGPL-3.0. See the [LICENSE](https://github.com/opensourceBIM/BIMserver?tab=AGPL-3.0-1-ov-file#readme) and the respective [wiki page](License) for more details.
+Open Source BIMserver is licensed under the AGPL-3.0. See the [LICENSE](https://github.com/opensourceBIM/BIMserver?tab=AGPL-3.0-1-ov-file#readme) and the respective [wiki page](License.md) for more details.

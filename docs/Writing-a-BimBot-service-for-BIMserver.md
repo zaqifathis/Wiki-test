@@ -6,7 +6,7 @@ The BimBots interface is a little more strict in the sense that it has a pre-def
 
 # BimBots interface
 
-> Note, when talking about an interface on this page we mean an actual Java interface. The BimBots protocol itself however is language independent (see: [external services](External-services)).
+> Note, when talking about an interface on this page we mean an actual Java interface. The BimBots protocol itself however is language independent (see: [external services](External-services.md)).
 
 > Note this interface is still subject to change.
 
