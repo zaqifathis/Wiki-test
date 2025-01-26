@@ -1,0 +1,1 @@
+![Communication](img/communication.png)
