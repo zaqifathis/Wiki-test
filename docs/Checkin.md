@@ -8,7 +8,7 @@ The usual way would be to call the [checkin method](https://github.com/opensourc
 
 If you are using JSON, you'll have to encode the actual data (the `data` argument) in base64. Because of this, using this method is not the most efficient way of checking-in a file in BIMserver. It is however the most consistent way, because this call works just like all other (300) BIMserver calls.
 
-Any immediate exception will be in the return message as well, just as all other calls to BIMserver. See section about exceptions in the [JSON API](JSON-API#exception) for the JSON interface.
+Any immediate exception will be in the return message as well, just as all other calls to BIMserver. See section about exceptions in the [JSON API](JSON-API.md#exception) for the JSON interface.
 
 # Other way
 

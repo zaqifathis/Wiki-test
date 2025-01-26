@@ -72,10 +72,10 @@ nav:
       - Service interfaces: Service-Interfaces.md
       - SOAP: SOAP.md 
       - JSON: JSON-API.md 
-      - Protocol Buffers: Protocol-Buffers.md\* Common functions
+      - Protocol Buffers: Protocol-Buffers.md
     - Common Functions:
       - Checkin: Checkin.md 
-      - Download: Downloading-models.md\* Data Model
+      - Download: Downloading-models.md
     - Data Model:
       - SProject: Eclipse-setup-with-Team-project-set.md 
       - SRevision: SRevision.md
