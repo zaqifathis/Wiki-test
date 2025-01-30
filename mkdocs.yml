@@ -39,9 +39,12 @@ theme:
         name: Switch to light mode
 
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/opensourceBIM/BIMserver
+  version:
+    - provider: mike
+
+repo_url: https://github.com/opensourceBIM/BIMserver
+repo_name: opensourceBIM/BIMserver
+copyright: Copyright &copy; 2025 OpensourceBIM/BIMserver
 
 #SIDEBAR
 nav:
